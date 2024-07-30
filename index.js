@@ -13,8 +13,8 @@ function getHumanChoice () {const choice = prompt("Enter rock , paper, or scisso
 let humanScore = 0;
 let computerScore = 0; 
 /*Logic for round */
-/* < > nu merg cu string dar doar cu numere */
-function playRound(humanChoice, computerChoice ) {
+
+/*function playRound(humanChoice, computerChoice ) {
 console.log(`Human choice: ${humanChoice}, Computer choice: ${computerChoice}`)
     if (humanChoice ===  computerChoice )  {
       console.log("Draw"); console.log("Human score:",++humanScore,"Computer score:",++computerScore)}
@@ -29,7 +29,7 @@ console.log(`Human choice: ${humanChoice}, Computer choice: ${computerChoice}`)
     else if (humanChoice === "scissors" && computerChoice === "rock")
       {console.log("Computer wins"); console.log("Computer score:",++computerScore);}
     else if (humanChoice === "scissors" && computerChoice === "paper")
-      {console.log("You win"); console.log("Human score:",++humanScore);}
+      {console.log("You win"); console.log("Human score:",++humanScore);} */
     
   }
   
