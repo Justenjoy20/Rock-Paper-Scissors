@@ -1,20 +1,17 @@
 
-
-//Get computer's choice and return it
 function getComputerChoice() { const choices = ["rock", "paper", "scissors"];
-    const randomIndex = Math.floor(Math.random()*choices.length); return choices[randomIndex]; }
+  const randomIndex = Math.floor(Math.random()*choices.length); return choices[randomIndex]; }
 
 //Prompt and return human choice
 
 function getHumanChoice () {const choice = prompt("Enter rock , paper, or scissors").toLowerCase();
-   return choice;
-}; 
-//
-let humanScore = 0;
+ return choice;}
+
+ let humanScore = 0;
 let computerScore = 0; 
 /*Logic for round */
-
-/*function playRound(humanChoice, computerChoice ) {
+/* < > nu merg cu string dar doar cu numere */
+function playRound(humanChoice, computerChoice ) {
 console.log(`Human choice: ${humanChoice}, Computer choice: ${computerChoice}`)
     if (humanChoice ===  computerChoice )  {
       console.log("Draw"); console.log("Human score:",++humanScore,"Computer score:",++computerScore)}
@@ -29,7 +26,7 @@ console.log(`Human choice: ${humanChoice}, Computer choice: ${computerChoice}`)
     else if (humanChoice === "scissors" && computerChoice === "rock")
       {console.log("Computer wins"); console.log("Computer score:",++computerScore);}
     else if (humanChoice === "scissors" && computerChoice === "paper")
-      {console.log("You win"); console.log("Human score:",++humanScore);} */
+      {console.log("You win"); console.log("Human score:",++humanScore);}
     
   }
   
@@ -51,4 +48,25 @@ console.log(`Human choice: ${humanChoice}, Computer choice: ${computerChoice}`)
     return "Game over"                               
     }
     console.log(playGame());
-                                                                                                       
+
+const butt1 = document.createElement("button");
+const butt2 = document.createElement("button");
+const butt3 = document.createElement("button");
+butt1.id = `#click1`;
+butt2.id = `#click2`;
+butt3.id = `#click3`;
+const div = document.querySelector("#container")
+div.appendChild(butt1);
+div.appendChild(butt2);
+div.appendChild(butt3);
+const allbuttons = document.querySelectorAll("button")
+allbuttons.forEach( function (button) {
+  button.addEventListener("click", () => {
+    alert(button.id);
+  });
+});
+
+const div2 = document.createElement("div");
+div.appendChild(div2);
+div2,addEventListener(`click`, () => {console.log("results")})
+                                         
