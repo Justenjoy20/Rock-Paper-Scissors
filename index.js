@@ -1,72 +1,78 @@
-
+//Random choice of the computer
 function getComputerChoice() { const choices = ["rock", "paper", "scissors"];
   const randomIndex = Math.floor(Math.random()*choices.length); return choices[randomIndex]; }
-
-//Prompt and return human choice
-
-function getHumanChoice () {const choice = prompt("Enter rock , paper, or scissors").toLowerCase();
- return choice;}
-
+ 
+  
+//variables for score
  let humanScore = 0;
 let computerScore = 0; 
+ //Disable buttons
+ const buttons = document.querySelectorAll(`button`)
+ function disableButtons() {
+     buttons.forEach(elem => {
+         elem.disabled = true
+     })}
 /*Logic for round */
-/* < > nu merg cu string dar doar cu numere */
 function playRound(humanChoice, computerChoice ) {
-console.log(`Human choice: ${humanChoice}, Computer choice: ${computerChoice}`)
-    if (humanChoice ===  computerChoice )  {
-      console.log("Draw"); console.log("Human score:",++humanScore,"Computer score:",++computerScore)}
-       else if (humanChoice === "rock" && computerChoice === "paper" )
-      {console.log("Computer wins"); console.log("Computer score:",++computerScore);}
-    else if (humanChoice === "rock" && computerChoice === "scissors")
-   {console.log("You win"); console.log("Human score:",++humanScore);}
-    else if (humanChoice === "paper" && computerChoice === "scissors")
-      {console.log("Computer wins"); console.log("Computer score:",++computerScore);}
-    else if (humanChoice === "paper" && computerChoice === "rock")
-      {console.log("You win"); console.log("Human score:",++humanScore);}
-    else if (humanChoice === "scissors" && computerChoice === "rock")
-      {console.log("Computer wins"); console.log("Computer score:",++computerScore);}
-    else if (humanChoice === "scissors" && computerChoice === "paper")
-      {console.log("You win"); console.log("Human score:",++humanScore);}
-    
-  }
-  
-  /*Cum se calculeaza humanChoice si computerChoice ? 
-  pe baza functiilor getHumanChose si getComputerChoice,
-  rezultatul la humanChoice si comp este indicat de return, 
-  fara return functia nu va returna nici o valoare care poate sa fie folosita in alte functii*/  
-  
-/* Loop the rounds*/
- function endscore()   {if (humanScore > computerScore) {console.log(`Human domination with ${humanScore} points`);}
- else  {console.log(`Computer beats Human with ${computerScore} points`);}}
-
-  function playGame () {
-  let count = 0;
-  while (count < 5) { const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);count++;};  
-    endscore(); 
-    return "Game over"                               
+ 
+  let resultText = ``
+  let choice1 = `Human choice: ${humanChoice}, Computer choice: ${computerChoice}`
+ 
+  let humanoidscore = (`Human score: ${++humanScore}, Human wins!`)
+  let computeroidscore = (`Computer score: ${++computerScore}, Computer wins!`);
+  document.getElementById(`choice1`).innerHTML = choice1
+      if (humanChoice ===  computerChoice )  {
+          document.getElementById(`scoreboard`).innerHTML = `Draw`}
+         else if (humanChoice === "rock" && computerChoice === "paper" )
+        {  document.getElementById(`scoreboard`).innerHTML = computeroidscore}
+      else if (humanChoice === "rock" && computerChoice === "scissors")
+     {  document.getElementById(`scoreboard`).innerHTML = humanoidscore;}
+      else if (humanChoice === "paper" && computerChoice === "scissors")
+        { document.getElementById(`scoreboard`).innerHTML = computeroidscore}
+      else if (humanChoice === "paper" && computerChoice === "rock")
+        {   document.getElementById(`scoreboard`).innerHTML = humanoidscore}
+      else if (humanChoice === "scissors" && computerChoice === "rock")
+        {  document.getElementById(`scoreboard`).innerHTML = computeroidscore}
+      else if (humanChoice === "scissors" && computerChoice === "paper")
+        {   document.getElementById(`scoreboard`).innerHTML = humanoidscore}
+      if (humanScore === 5 || computerScore === 5) {
+        document.getElementById('result').innerHTML = "<br>Game over"
+        disableButtons();
+        return; // Stop further processing
     }
-    console.log(playGame());
-
-const butt1 = document.createElement("button");
-const butt2 = document.createElement("button");
-const butt3 = document.createElement("button");
-butt1.id = `#click1`;
-butt2.id = `#click2`;
-butt3.id = `#click3`;
+  }
+           
+    
+  //selecting a div for the buttons
 const div = document.querySelector("#container")
-div.appendChild(butt1);
-div.appendChild(butt2);
-div.appendChild(butt3);
-const allbuttons = document.querySelectorAll("button")
-allbuttons.forEach( function (button) {
-  button.addEventListener("click", () => {
-    alert(button.id);
-  });
-});
 
-const div2 = document.createElement("div");
-div.appendChild(div2);
-div2,addEventListener(`click`, () => {console.log("results")})
-                                         
+// selecting id for the buttons
+const butt1 = document.querySelector(`#click1`);
+const butt2 = document.querySelector(`#click2`);
+const butt3 = document.querySelector(`#click3`);
+//Add text content
+butt1.textContent = "Rock";
+butt2.textContent = "Paper";
+butt3.textContent = "Scissors";
+ // On click trigger the human and computer choice
+ 
+ butt1.addEventListener('click', () => playRound("rock", getComputerChoice()));
+ butt2.addEventListener('click', () => playRound("paper", getComputerChoice()));
+ butt3.addEventListener('click', () => playRound("scissors", getComputerChoice()));
+
+// function to display endscore
+const finalscore = document.querySelector("#finalscore");
+function endScore() {
+  
+
+  if (humanScore > computerScore) {
+    finalscore.innerText = `Human domination with ${humanScore} points`;
+  } else {
+    finalscore.innerText = `Computer beats Human with ${computerScore} points`;
+  }
+
+}
+ 
+
+
+
